@@ -22,3 +22,8 @@ class User(AbstractUser):
         through='pets.UserPet',
         related_name='owners'
     )
+
+    class Meta:
+        db_table = "user"
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"

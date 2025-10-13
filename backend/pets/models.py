@@ -1,9 +1,13 @@
 from django.db import models
-
 from users.models import User
 
 # Категории животных
 class AnimalCategory(models.Model):
+    class Meta:
+        db_table = "animal_categories"
+        verbose_name = "Категория животных"
+        verbose_name_plural = "Категории животных"
+    
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
@@ -11,6 +15,11 @@ class AnimalCategory(models.Model):
 
 # Породы
 class Species(models.Model):
+    class Meta:
+        db_table = "species"
+        verbose_name = "Порода"
+        verbose_name_plural = "Породы"
+    
     category = models.ForeignKey(AnimalCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
@@ -19,6 +28,11 @@ class Species(models.Model):
 
 # Питомцы
 class Pet(models.Model):
+    class Meta:
+        db_table = "pets"
+        verbose_name = "Питомец"
+        verbose_name_plural = "Питомцы"
+    
     name = models.CharField(max_length=100)
     image = models.ImageField(
         # upload_to=UserImageStorage.image_path,
@@ -37,13 +51,15 @@ class Pet(models.Model):
 
 # Промежуточная таблица для связи User ↔ Pet
 class UserPet(models.Model):
+    class Meta:
+        db_table = "users_pets"
+        verbose_name = "Питомец пользователя"
+        verbose_name_plural = "Питомцы пользователей"
+        unique_together = ('user', 'pet')  # запрещаем дубли одной пары
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     added_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'users_pets'
-        unique_together = ('user', 'pet')  # запрещаем дубли одной пары
 
     def __str__(self):
         return f"{self.user.username} ↔ {self.pet.name}"
