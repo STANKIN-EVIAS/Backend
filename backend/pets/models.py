@@ -42,7 +42,18 @@ class Pet(models.Model):
         verbose_name="Аватар",
     )
     birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=10, blank=True)
+
+    GENDER_CHOICES = [
+        ('S', 'Сука'),
+        ('K', 'Кабель'),
+    ]
+    
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES,
+        blank=True,
+        null=True  # опционально, если поле может быть пустым
+    )
     description = models.TextField(blank=True)
     species = models.ForeignKey(Species, null=True, on_delete=models.SET_NULL)
 
