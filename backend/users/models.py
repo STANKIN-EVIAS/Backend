@@ -4,14 +4,14 @@ from django.contrib.auth.models import AbstractUser
 from users.storage import UserImageStorage
 
 
-
-# Пользователь
 class User(AbstractUser):
     class Meta:
         db_table = "user"
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
-        
+
+    username = models.CharField(max_length=150, blank=True, null=True, unique=False)  # не обязателен
+    email = models.EmailField(unique=True, verbose_name="Email")
     image = models.ImageField(
         upload_to=UserImageStorage.image_path,
         storage=UserImageStorage(),
@@ -20,13 +20,12 @@ class User(AbstractUser):
         verbose_name="Аватар",
     )
     phone_number = models.CharField(max_length=20, blank=True, null=True, unique=True, verbose_name="Номер телефона")
-    email = models.EmailField(unique=True, verbose_name="Email")
-    role = models.CharField(max_length=50, default='user')  # user, vet, admin
-
-    # Many-to-Many связь с питомцами через промежуточную таблицу
+    role = models.CharField(max_length=50, default="user", verbose_name="Роль")  # user, vet, admin
     pets = models.ManyToManyField(
         'pets.Pet',
         through='pets.UserPet',
         related_name='owners'
     )
 
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []  

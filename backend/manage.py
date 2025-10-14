@@ -18,8 +18,8 @@ def main():
             "Couldn't import Django. Make sure it's installed and your venv is active."
         ) from exc
 
-    execute_from_command_line(sys.argv)
     logger.info("Starting EVIAS backend...")
+    execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
     main()
