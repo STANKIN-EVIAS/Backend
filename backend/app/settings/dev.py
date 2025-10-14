@@ -1,5 +1,6 @@
 from .base import *
 from .logging import LOGGING
+from .aws_storage import *
 import dj_database_url
 
 DEBUG = True

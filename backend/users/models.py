@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from users.storage import UserImageStorage
+
 
 
 # Пользователь
@@ -11,8 +13,8 @@ class User(AbstractUser):
         verbose_name_plural = "Пользователи"
         
     image = models.ImageField(
-        # upload_to=UserImageStorage.image_path,
-        # storage=UserImageStorage(),
+        upload_to=UserImageStorage.image_path,
+        storage=UserImageStorage(),
         blank=True,
         null=True,
         verbose_name="Аватар",

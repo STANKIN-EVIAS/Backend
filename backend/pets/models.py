@@ -1,4 +1,5 @@
 from django.db import models
+from pets.storage import PetImageStorage
 from users.models import User
 
 # Категории животных
@@ -35,8 +36,8 @@ class Pet(models.Model):
     
     name = models.CharField(max_length=100)
     image = models.ImageField(
-        # upload_to=UserImageStorage.image_path,
-        # storage=UserImageStorage(),
+        upload_to=PetImageStorage.image_path,
+        storage=PetImageStorage(),
         blank=True,
         null=True,
         verbose_name="Аватар",

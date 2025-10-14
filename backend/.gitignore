@@ -12,4 +12,4 @@ venv
 db.sqlite3
 media/
 todo
-static
+.env
