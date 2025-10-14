@@ -1,0 +1,15 @@
+__pycache__/
+
+temp/
+logs/eVIAS.log
+__pycache__/
+.pylintrc
+cache/
+.venv/
+venv
+.idea/
+.vscode
+db.sqlite3
+media/
+todo
+static

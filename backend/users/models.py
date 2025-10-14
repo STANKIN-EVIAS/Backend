@@ -5,6 +5,11 @@ from django.contrib.auth.models import AbstractUser
 
 # Пользователь
 class User(AbstractUser):
+    class Meta:
+        db_table = "user"
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+        
     image = models.ImageField(
         # upload_to=UserImageStorage.image_path,
         # storage=UserImageStorage(),
@@ -23,7 +28,3 @@ class User(AbstractUser):
         related_name='owners'
     )
 
-    class Meta:
-        db_table = "user"
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
