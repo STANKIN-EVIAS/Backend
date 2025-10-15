@@ -10,7 +10,7 @@ class User(AbstractUser):
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
 
-    username = models.CharField(max_length=150, blank=True, null=True, unique=False)  # не обязателен
+    username = models.CharField(max_length=150, blank=True, null=True, unique=True)
     email = models.EmailField(unique=True, verbose_name="Email")
     image = models.ImageField(
         upload_to=UserImageStorage.image_path,
@@ -27,5 +27,6 @@ class User(AbstractUser):
         related_name='owners'
     )
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []  
+    # Используем email как поле для входа
+    # USERNAME_FIELD = "email"
+    # REQUIRED_FIELDS = []

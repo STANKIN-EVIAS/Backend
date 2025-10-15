@@ -3,10 +3,10 @@ from pets.storage import PetImageStorage
 from users.models import User
 
 # Категории животных
-class AnimalCategory(models.Model):
+class AnimalGenus(models.Model):
     class Meta:
         db_table = "animal_categories"
-        verbose_name = "Категория животных"
+        verbose_name = "Род животных"
         verbose_name_plural = "Категории животных"
     
     name = models.CharField(max_length=100, unique=True)
@@ -21,7 +21,7 @@ class Species(models.Model):
         verbose_name = "Порода"
         verbose_name_plural = "Породы"
     
-    category = models.ForeignKey(AnimalCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(AnimalGenus , on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -45,18 +45,19 @@ class Pet(models.Model):
     birth_date = models.DateField(null=True, blank=True)
 
     GENDER_CHOICES = [
-        ('S', 'Сука'),
-        ('K', 'Кабель'),
+        ('M', 'Женский'),
+        ('F', 'Мужской')
     ]
-    
+
     gender = models.CharField(
-        max_length=10,
+        max_length=1,       # достаточно 1 символа для кода
         choices=GENDER_CHOICES,
         blank=True,
-        null=True  # опционально, если поле может быть пустым
+        null=True           # если поле может быть пустым
     )
-    description = models.TextField(blank=True)
-    species = models.ForeignKey(Species, null=True, on_delete=models.SET_NULL)
+
+    genus  = models.ForeignKey(AnimalGenus , null=True, blank=True, on_delete=models.SET_NULL)
+    species = models.ForeignKey(Species, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name

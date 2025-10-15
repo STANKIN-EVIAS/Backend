@@ -12,6 +12,7 @@ class UserPetInline(admin.TabularInline):
 # Кастомный админ для пользователя
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
+    """Настройки отображения модели User в Django admin."""
     inlines = [UserPetInline]  # подключаем инлайн
     list_display = ('username', 'email', 'phone_number', 'role')
     list_filter = ('role', 'is_staff', 'is_active')
