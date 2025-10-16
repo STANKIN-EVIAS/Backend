@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from pet_documents.storage import PetFileImageStorage
 from pets.models import Pet
 
 
@@ -112,9 +113,10 @@ class Certificate(models.Model):
         verbose_name="Описание / комментарий"
     )
     document_file = models.FileField(
-        upload_to='pets/certificates/',
-        null=True,
+        upload_to=PetFileImageStorage.image_path,
+        storage=PetFileImageStorage(),
         blank=True,
+        null=True,
         verbose_name="Файл сертификата"
     )
 
