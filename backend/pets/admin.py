@@ -21,18 +21,14 @@ class SpeciesAdmin(admin.ModelAdmin):
 # --- Питомцы ---
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'species', 'genus', 'birth_date', 'gender', 'image_tag')
+    list_display = ('id', 'name', 'species', 'genus', 'birth_date', 'gender')
     list_filter = ('species', 'gender', 'genus')
     search_fields = ('name', 'description', 'species__name')
     ordering = ('name',)
-    readonly_fields = ('id', 'image_tag')
+    readonly_fields = ('id',)
 
 
-    def image_tag(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="height:50px;"/>', obj.image.url)
-        return "-"
-    image_tag.short_description = "Аватар"
+
 
 # --- Питомцы пользователей ---
 @admin.register(UserPet)

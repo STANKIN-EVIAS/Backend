@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'storages',
     'users',
     'pets',
+    'pet_documents',
 ]
 
 MIDDLEWARE = [

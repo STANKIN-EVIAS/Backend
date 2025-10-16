@@ -45,8 +45,8 @@ class Pet(models.Model):
     birth_date = models.DateField(null=True, blank=True)
 
     GENDER_CHOICES = [
-        ('M', 'Женский'),
-        ('F', 'Мужской')
+        ('M', 'Мужской'),
+        ('F', 'Женский')
     ]
 
     gender = models.CharField(
