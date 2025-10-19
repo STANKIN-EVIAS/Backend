@@ -40,17 +40,19 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     """Сериализатор логина. При успешной валидации возвращает JWT-токены."""
-    email = serializers.EmailField()
+    username = serializers.CharField(write_only=True)
+    # email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
     access = serializers.CharField(read_only=True)
     refresh = serializers.CharField(read_only=True)
 
     def validate(self, attrs):
-        email = attrs.get('email')
+        username = attrs.get('username')
+        # email = attrs.get('email')
         password = attrs.get('password')
         # ModelBackend ожидает аргумент username. В нашей модели
         # USERNAME_FIELD = 'email', поэтому передаём email как username.
-        user = authenticate(request=self.context.get('request'), username=email, password=password)
+        user = authenticate(request=self.context.get('request'), username=username, password=password)
         if not user:
             raise serializers.ValidationError('Неверный email или пароль')
 

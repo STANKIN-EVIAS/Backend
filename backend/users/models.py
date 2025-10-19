@@ -6,7 +6,7 @@ from users.storage import UserImageStorage
 
 class User(AbstractUser):
     class Meta:
-        db_table = "user"
+        db_table = '"users"."user"'
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
 

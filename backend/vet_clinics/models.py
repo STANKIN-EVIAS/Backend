@@ -5,6 +5,11 @@ from users.models import User
 
 # 🏥 КЛИНИКА
 class Clinic(models.Model):
+    class Meta:
+        db_table = '"vet_clinics"."clinic"'
+        verbose_name = "Клиника"
+        verbose_name_plural = "Клиники"
+        ordering = ["name"]
     name = models.CharField(
         max_length=255,
         verbose_name="Название клиники"
@@ -36,11 +41,7 @@ class Clinic(models.Model):
     )
 
 
-    class Meta:
-        db_table = "clinic"
-        verbose_name = "Клиника"
-        verbose_name_plural = "Клиники"
-        ordering = ["name"]
+
 
     def __str__(self):
         return self.name
@@ -48,6 +49,12 @@ class Clinic(models.Model):
 
 # 🩺 ВЕТЕРИНАР
 class Veterinarian(models.Model):
+    class Meta:
+        db_table = '"vet_clinics"."veterinarian"'
+        verbose_name = "Ветеринар"
+        verbose_name_plural = "Ветеринары"
+        ordering = ["user__last_name"]
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -71,11 +78,7 @@ class Veterinarian(models.Model):
         verbose_name="Биография / описание"
     )
 
-    class Meta:
-        db_table = "veterinarian"
-        verbose_name = "Ветеринар"
-        verbose_name_plural = "Ветеринары"
-        ordering = ["user__last_name"]
+
 
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.specialization})"
@@ -83,6 +86,12 @@ class Veterinarian(models.Model):
 
 # 💉 УСЛУГА
 class Service(models.Model):
+    class Meta:
+        db_table = '"vet_clinics"."service"'
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"
+        ordering = ["name"]
+
     clinic = models.ForeignKey(
         Clinic,
         on_delete=models.CASCADE,
@@ -108,11 +117,7 @@ class Service(models.Model):
         verbose_name="Длительность (мин)"
     )
 
-    class Meta:
-        db_table = "service"
-        verbose_name = "Услуга"
-        verbose_name_plural = "Услуги"
-        ordering = ["name"]
+
 
     def __str__(self):
         return f"{self.name} ({self.clinic.name})"
@@ -120,6 +125,12 @@ class Service(models.Model):
 
 # 📅 ПРИЁМ (запись питомца к врачу)
 class Appointment(models.Model):
+    class Meta:
+        db_table = '"vet_clinics"."appointment"'
+        verbose_name = "Приём"
+        verbose_name_plural = "Приёмы"
+        ordering = ["-appointment_date"]
+
     pet = models.ForeignKey(
         Pet,
         on_delete=models.CASCADE,
@@ -165,11 +176,7 @@ class Appointment(models.Model):
         verbose_name="Обновлено"
     )
 
-    class Meta:
-        db_table = "appointment"
-        verbose_name = "Приём"
-        verbose_name_plural = "Приёмы"
-        ordering = ["-appointment_date"]
+
 
     def __str__(self):
         return f"{self.pet.name} — {self.service.name if self.service else 'Приём'} ({self.appointment_date:%d.%m.%Y %H:%M})"

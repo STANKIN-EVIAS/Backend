@@ -5,7 +5,7 @@ from users.models import User
 # Категории животных
 class AnimalGenus(models.Model):
     class Meta:
-        db_table = "animal_categories"
+        db_table = '"pets"."animal_genus"'
         verbose_name = "Род животных"
         verbose_name_plural = "Категории животных"
     
@@ -17,7 +17,7 @@ class AnimalGenus(models.Model):
 # Породы
 class Species(models.Model):
     class Meta:
-        db_table = "species"
+        db_table = '"pets"."species"'
         verbose_name = "Порода"
         verbose_name_plural = "Породы"
     
@@ -30,7 +30,7 @@ class Species(models.Model):
 # Питомцы
 class Pet(models.Model):
     class Meta:
-        db_table = "pets"
+        db_table = '"pets"."pets"'
         verbose_name = "Питомец"
         verbose_name_plural = "Питомцы"
     
@@ -65,7 +65,7 @@ class Pet(models.Model):
 # Промежуточная таблица для связи User ↔ Pet
 class UserPet(models.Model):
     class Meta:
-        db_table = "users_pets"
+        db_table = '"pets"."users_pets"'
         verbose_name = "Питомец пользователя"
         verbose_name_plural = "Питомцы пользователей"
         unique_together = ('user', 'pet')  # запрещаем дубли одной пары

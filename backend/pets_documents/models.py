@@ -6,6 +6,12 @@ from pets.models import Pet
 
 # 🪪 ПАСПОРТ ПИТОМЦА
 class Passport(models.Model):
+    class Meta:
+        db_table = '"pets_documents"."passport"'
+        verbose_name = "Паспорт питомца"
+        verbose_name_plural = "Паспорта питомцев"
+        ordering = ['-issue_date']
+
     passport_number = models.CharField(
         max_length=50,
         unique=True,
@@ -49,15 +55,17 @@ class Passport(models.Model):
     def __str__(self):
         return f"{self.pet.name} — {self.passport_number}"
 
-    class Meta:
-        db_table = "passport"
-        verbose_name = "Паспорт питомца"
-        verbose_name_plural = "Паспорта питомцев"
-        ordering = ['-issue_date']
+
 
 
 # 📜 СЕРТИФИКАТ (вакцинация, родословная, стерилизация и т.п.)
 class Certificate(models.Model):
+    class Meta:
+        db_table = '"pets_documents"."certificate"'
+        verbose_name = "Сертификат"
+        verbose_name_plural = "Сертификаты"
+        ordering = ['-issue_date']
+
     certificate_number = models.CharField(
         max_length=50,
         null=True,
@@ -124,15 +132,16 @@ class Certificate(models.Model):
         return f"{self.get_certificate_type_display()} — {self.pet.name}"
 
 
-    class Meta:
-        db_table = "certificate"
-        verbose_name = "Сертификат"
-        verbose_name_plural = "Сертификаты"
-        ordering = ['-issue_date']
+
 
 
 # 🩺 МЕДИЦИНСКАЯ КАРТА
 class MedicalCard(models.Model):
+    class Meta:
+        db_table = '"pets_documents"."medical_card"'
+        verbose_name = "Медицинская карта"
+        verbose_name_plural = "Медицинские карты"
+
     medical_number = models.CharField(
         max_length=50,
         null=True,
@@ -197,7 +206,4 @@ class MedicalCard(models.Model):
     def __str__(self):
         return f"Медкарта — {self.pet.name}"
 
-    class Meta:
-        db_table = "medical_card"
-        verbose_name = "Медицинская карта"
-        verbose_name_plural = "Медицинские карты"
+
