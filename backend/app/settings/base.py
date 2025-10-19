@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'storages',
     'users',
     'pets',
-    'pet_documents',
+    'pets_documents',
+    "vet_clinics",
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
+
+from pets_documents.admin import CertificateInline, MedicalCardInline, PassportInline
 from .models import AnimalGenus, Species, Pet, UserPet
 from users.models import User
 
@@ -21,6 +23,8 @@ class SpeciesAdmin(admin.ModelAdmin):
 # --- Питомцы ---
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
+    inlines = [PassportInline, MedicalCardInline, CertificateInline]
+
     list_display = ('id', 'name', 'species', 'genus', 'birth_date', 'gender')
     list_filter = ('species', 'gender', 'genus')
     search_fields = ('name', 'description', 'species__name')
@@ -52,4 +56,5 @@ class UserPetInline(admin.TabularInline):
     extra = 0
     readonly_fields = ('pet',)
     can_delete = False
+
 

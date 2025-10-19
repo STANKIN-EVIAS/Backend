@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('vaccinations', models.TextField(blank=True, null=True, verbose_name='Прививки (описание)')),
                 ('last_checkup_date', models.DateField(blank=True, null=True, verbose_name='Последний осмотр')),
                 ('next_checkup_date', models.DateField(blank=True, null=True, verbose_name='Следующий осмотр')),
-                ('certificate', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='medical_cards', to='pet_documents.certificate', verbose_name='Связанный сертификат')),
+                ('certificate', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='medical_cards', to='pets_documents.certificate', verbose_name='Связанный сертификат')),
                 ('pet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='medical_cards', to='pets.pet', verbose_name='Питомец')),
             ],
             options={

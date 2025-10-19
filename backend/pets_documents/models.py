@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from pet_documents.storage import PetFileImageStorage
+from pets_documents.storage import PetFileImageStorage
 from pets.models import Pet
 
 
