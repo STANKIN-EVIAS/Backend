@@ -1,5 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+
+from pets.views import PetsViewSet
 from .views import UserViewSet, RegisterView, LoginView, UserProfileAPIView
 
 router = DefaultRouter()

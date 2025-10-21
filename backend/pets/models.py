@@ -53,7 +53,7 @@ class Pet(models.Model):
         max_length=1,       # достаточно 1 символа для кода
         choices=GENDER_CHOICES,
         blank=True,
-        null=True           # если поле может быть пустым
+        null=True          
     )
 
     genus  = models.ForeignKey(AnimalGenus , null=True, blank=True, on_delete=models.SET_NULL)

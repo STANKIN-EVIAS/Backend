@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import AnimalGenus, User
-from pets.models import Pet
+from .models import Pet
 
 
 
