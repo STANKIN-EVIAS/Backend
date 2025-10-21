@@ -11,35 +11,38 @@ import logging
 
 logger = logging.getLogger("evias")
 
+
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для вывода данных пользователя."""
 
     pets = PetSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model = User
-        fields = ['id', 'username',"first_name","last_name", 'email', 'phone_number', 'role', 'image', 'pets']
-        read_only_fields = ['id']
+        fields = ["id", "username", "first_name", "last_name", "email", "phone_number", "role", "image", "pets"]
+        read_only_fields = ["id"]
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     """Сериализатор регистрации. Создаёт пользователя с хешированным паролем."""
+
     password = serializers.CharField(write_only=True, min_length=6)
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password']
+        fields = ["email", "username", "password"]
 
     def create(self, validated_data):
         # Если username не передан, подставляем email.
-        if not validated_data.get('username'):
-            validated_data['username'] = validated_data.get('email')
+        if not validated_data.get("username"):
+            validated_data["username"] = validated_data.get("email")
         # create_user корректно захеширует пароль через UserManager
         return User.objects.create_user(**validated_data)
 
 
 class LoginSerializer(serializers.Serializer):
     """Сериализатор логина. При успешной валидации возвращает JWT-токены."""
+
     username = serializers.CharField(write_only=True)
     # email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
@@ -47,19 +50,19 @@ class LoginSerializer(serializers.Serializer):
     refresh = serializers.CharField(read_only=True)
 
     def validate(self, attrs):
-        username = attrs.get('username')
+        username = attrs.get("username")
         # email = attrs.get('email')
-        password = attrs.get('password')
+        password = attrs.get("password")
         # ModelBackend ожидает аргумент username. В нашей модели
         # USERNAME_FIELD = 'email', поэтому передаём email как username.
-        user = authenticate(request=self.context.get('request'), username=username, password=password)
+        user = authenticate(request=self.context.get("request"), username=username, password=password)
         if not user:
-            raise serializers.ValidationError('Неверный email или пароль')
+            raise serializers.ValidationError("Неверный email или пароль")
 
         from rest_framework_simplejwt.tokens import RefreshToken
+
         refresh = RefreshToken.for_user(user)
-        attrs['access'] = str(refresh.access_token)
-        attrs['refresh'] = str(refresh)
+        attrs["access"] = str(refresh.access_token)
+        attrs["refresh"] = str(refresh)
+
         return attrs
-
-
