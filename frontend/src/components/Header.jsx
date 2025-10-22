@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getProfile } from "../api/profile";
 
 export default function Header() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getProfile()
+      .then(setUser)
+      .catch(console.error);
+  }, []);
+
   return (
     <header className="bg-neutral-100 shadow-md relative">
       {/* Верхняя часть: логотип и контакты */}
-      <div className="container mx-auto flex justify-between items-center h-28 px-6">
+      <a href="/" className="container mx-auto flex justify-between items-center h-28 px-6">
         <div>
           <h1 className="text-5xl font-black font-inter">ЕВИАС</h1>
           <p className="text-xs text-gray-500 mt-1">
@@ -15,20 +24,19 @@ export default function Header() {
           <p className="text-sm text-gray-600">+7 (ХХХ) - ХХХ- ХХ - ХХ</p>
           <CallDoctorButton />
           <OnlineBookingButton />
-          <ProfileButton />
+          <ProfileButton user={user} />
         </div>
-      </div>
-
+      </a>
       {/* Нижняя навигация */}
-        <nav className="bg-white shadow-xl">
+      <nav className="bg-white shadow-[0px_6px_4px_rgba(0,0,0,0.59)]">
         <div className="container mx-auto flex justify-center gap-8 h-16 items-center px-6">
-            <NavItem text="Услуги" />
-            <NavItem text="Контакты" />
-            <NavItem text="Отзывы" />
-            <NavItem text="Ветклиники" />
-            <NavItem text="Благотворительность" />
+          <NavItem text="Услуги" />
+          <NavItem text="Контакты" />
+          <NavItem text="Отзывы" />
+          <NavItem text="Ветклиники" />
+          <NavItem text="Благотворительность" />
         </div>
-        </nav>
+      </nav>
     </header>
   );
 }
@@ -49,17 +57,27 @@ function OnlineBookingButton() {
   );
 }
 
-function ProfileButton() {
+function ProfileButton({ user }) {
+  // Если user есть или есть accessToken — ведем на профиль, иначе на логин
+  const isAuth = !!user || !!localStorage.getItem("accessToken");
+
   return (
     <a
-      href="/login"
+      href={isAuth ? "/profile" : "/login"}
       className="flex items-center gap-2 bg-blue-600 text-white font-medium rounded-full h-12 px-4 hover:bg-blue-700"
     >
-      <div className="w-6 h-6 bg-white rounded-full"></div>
+      <div className="w-6 h-6 rounded-full overflow-hidden">
+        {user?.image ? (
+          <img src={user.image} alt="Аватар" className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full bg-white"></div>
+        )}
+      </div>
       Личный кабинет
     </a>
   );
 }
+
 
 function NavItem({ text }) {
   return (
