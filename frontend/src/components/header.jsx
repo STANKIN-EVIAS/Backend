@@ -52,7 +52,7 @@ function OnlineBookingButton() {
 function ProfileButton() {
   return (
     <a
-      href="/page"
+      href="/login"
       className="flex items-center gap-2 bg-blue-600 text-white font-medium rounded-full h-12 px-4 hover:bg-blue-700"
     >
       <div className="w-6 h-6 bg-white rounded-full"></div>
