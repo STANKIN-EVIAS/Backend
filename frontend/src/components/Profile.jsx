@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProfile } from "../api/profile";
+import ProfileButton from "./Header";
 
 export default function Profile() {
   const [user, setUser] = useState(null);

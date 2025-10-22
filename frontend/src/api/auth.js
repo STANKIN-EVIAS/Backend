@@ -1,10 +1,12 @@
+import { API_URL } from "./config";
+
 export async function login(email, password) {
-  const res = await fetch("http://localhost:8000/users/login/", {
+  const res = await fetch(API_URL + "/users/login/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-
+  console.log(res)
   if (!res.ok) throw new Error("Неверный email или пароль");
   const data = await res.json();
   localStorage.setItem("accessToken", data.access);
@@ -14,7 +16,7 @@ export async function login(email, password) {
 
 export async function refreshToken() {
   const refresh = localStorage.getItem("refreshToken");
-  const res = await fetch("http://localhost:8000/token/refresh/", {
+  const res = await fetch(API_URL + "/token/refresh/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh }),

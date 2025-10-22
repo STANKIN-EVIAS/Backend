@@ -21,12 +21,8 @@ class User(AbstractUser):
     )
     phone_number = models.CharField(max_length=20, blank=True, null=True, unique=True, verbose_name="Номер телефона")
     role = models.CharField(max_length=50, default="user", verbose_name="Роль")  # user, vet, admin
-    pets = models.ManyToManyField(
-        'pets.Pet',
-        through='pets.UserPet',
-        related_name='owners'
-    )
+    pets = models.ManyToManyField("pets.Pet", through="pets.UserPet", related_name="owners")
 
     # Используем email как поле для входа
-    # USERNAME_FIELD = "email"
-    # REQUIRED_FIELDS = []
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
