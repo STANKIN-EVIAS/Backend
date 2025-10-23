@@ -9,7 +9,6 @@ from pets.models import UserPet
 from pets.serializers import PetSerializer
 
 
-# Create your views here.
 class PetsViewSet(viewsets.ModelViewSet):
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
