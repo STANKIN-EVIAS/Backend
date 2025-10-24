@@ -62,19 +62,32 @@ function ProfileButton({ user }) {
   const isAuth = !!user || !!localStorage.getItem("accessToken");
 
   return (
-    <a
-      href={isAuth ? "/profile" : "/login"}
-      className="flex items-center gap-2 bg-blue-600 text-white font-medium rounded-full h-12 px-4 hover:bg-blue-700"
-    >
-      <div className="w-6 h-6 rounded-full overflow-hidden">
-        {user?.image ? (
-          <img src={user.image} alt="Аватар" className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full bg-white"></div>
-        )}
-      </div>
-      Личный кабинет
-    </a>
+    <div className="flex items-center gap-2">
+      <a
+        href={isAuth ? "/profile" : "/login"}
+        className="flex items-center gap-2 bg-blue-600 text-white font-medium rounded-full h-12 px-4 hover:bg-blue-700"
+      >
+        <div className="w-6 h-6 rounded-full overflow-hidden">
+          {user?.image ? (
+            <img src={user.image} alt="Аватар" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-white"></div>
+          )}
+        </div>
+        Личный кабинет
+      </a>
+      {isAuth && (
+        <a
+          href="/logout"
+          className="flex items-center gap-2 bg-red-500 text-white font-medium rounded-full h-12 px-4 hover:bg-red-600"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8z" clipRule="evenodd" />
+          </svg>
+          Выйти
+        </a>
+      )}
+    </div>
   );
 }
 

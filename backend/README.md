@@ -73,18 +73,18 @@ python manage.py runserver
 ### Основные эндпоинты:
 
 #### Аутентификация
-- POST `/api/v1/auth/register/` - регистрация
-- POST `/api/v1/auth/login/` - вход
-- POST `/api/v1/auth/token/refresh/` - обновление токена
+- POST `/auth/register/` - регистрация
+- POST `/auth/login/` - вход
+- POST `/auth/token/refresh/` - обновление токена
 
 #### Пользователи
-- GET/PUT `/api/v1/users/profile/` - профиль текущего пользователя
-- GET `/api/v1/users/` - список пользователей (для админов)
+- GET/PUT `/users/profile/` - профиль текущего пользователя
+- GET `/users/` - список пользователей (для админов)
 
 #### Питомцы
-- GET/POST `/api/v1/pets/` - список/создание питомцев
-- GET/PUT `/api/v1/pets/{id}/` - получение/обновление питомца
-- GET `/api/v1/pets/my/` - питомцы текущего пользователя
+- GET/POST `/pets/` - список/создание питомцев
+- GET/PUT `/pets/{id}/` - получение/обновление питомца
+- GET `/pets/my/` - питомцы текущего пользователя
 
 ## Разработка
 

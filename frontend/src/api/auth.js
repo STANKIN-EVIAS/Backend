@@ -27,3 +27,25 @@ export async function refreshToken() {
   localStorage.setItem("accessToken", data.access);
   return data.access;
 }
+
+export async function logout() {
+  // Удаляем токены из localStorage
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  
+  // Здесь можно добавить запрос к API для инвалидации токена на сервере
+  try {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      await fetch(API_URL + "/users/logout/", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+    }
+  } catch (error) {
+    console.error("Ошибка при выходе:", error);
+  }
+}

@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import Profile from "./pages/UserProfilePage";
+import ProfilePage from "./pages/UserProfilePage";
 import Header from "./components/Header";
-import HomePage from "./pages/HomePage"; // Добавьте этот импорт
+import HomePage from "./pages/HomePage";
+import Logout from "./components/Logout";
 import './App.css';
 
 export default function App() {
@@ -11,7 +12,8 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/" element={<HomePage />} /> {/* Заменили на компонент HomePage */}
       </Routes>
     </BrowserRouter>
