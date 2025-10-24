@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="EVIAS ERD-5.erd">
+	<entities>
+		<data-source id="postgres-jdbc-199fb6cc5f3-422bbf3661a20b5e">
+			<entity id="1" name="animal_genus" fq-name="pets.animal_genus" order="0" font="Segoe UI:9:0" x="487" y="731">
+				<path name="pets"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="2" name="pets" fq-name="pets.pets" order="1" font="Segoe UI:9:0" x="235" y="436">
+				<path name="pets"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="3" name="species" fq-name="pets.species" order="2" font="Segoe UI:9:0" x="345" y="723">
+				<path name="pets"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="4" name="users_pets" fq-name="pets.users_pets" order="3" font="Segoe UI:9:0" x="484" y="515">
+				<path name="pets"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="5" name="certificate" fq-name="pets_documents.certificate" order="4" color-bg="204,192,184" font="Segoe UI:9:0" x="11" y="723">
+				<path name="pets_documents"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="6" name="medical_card" fq-name="pets_documents.medical_card" order="5" color-bg="204,192,184" font="Segoe UI:9:0" x="13" y="410">
+				<path name="pets_documents"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="7" name="passport" fq-name="pets_documents.passport" order="6" color-bg="204,192,184" font="Segoe UI:9:0" x="188" y="722">
+				<path name="pets_documents"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="8" name="auth_group" fq-name="public.auth_group" order="7" color-bg="228,255,181" font="Segoe UI:9:0" x="1064" y="148">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="9" name="auth_group_permissions" fq-name="public.auth_group_permissions" order="8" color-bg="228,255,181" font="Segoe UI:9:0" x="1031" y="260">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="10" name="auth_permission" fq-name="public.auth_permission" order="9" color-bg="228,255,181" font="Segoe UI:9:0" x="1029" y="514">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="11" name="django_admin_log" fq-name="public.django_admin_log" order="10" color-bg="228,255,181" font="Segoe UI:9:0" x="649" y="477">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="12" name="django_content_type" fq-name="public.django_content_type" order="11" color-bg="228,255,181" font="Segoe UI:9:0" x="841" y="524">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="13" name="django_migrations" fq-name="public.django_migrations" order="12" color-bg="228,255,181" font="Segoe UI:9:0" x="969" y="678">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="14" name="django_session" fq-name="public.django_session" order="13" color-bg="228,255,181" font="Segoe UI:9:0" x="806" y="675">
+				<path name="public"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="15" name="user" fq-name="users.&quot;user&quot;" order="14" color-bg="255,255,255" font="Segoe UI:9:0" x="656" y="126">
+				<path name="users"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="16" name="user_groups" fq-name="users.user_groups" order="15" color-bg="255,255,255" font="Segoe UI:9:0" x="839" y="139">
+				<path name="users"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="17" name="user_user_permissions" fq-name="users.user_user_permissions" order="16" color-bg="255,255,255" font="Segoe UI:9:0" x="842" y="324">
+				<path name="users"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="18" name="appointment" fq-name="vet_clinics.appointment" order="17" color-bg="219,229,241" font="Segoe UI:9:0" x="207" y="134">
+				<path name="vet_clinics"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="19" name="clinic" fq-name="vet_clinics.clinic" order="18" color-bg="219,229,241" font="Segoe UI:9:0" x="12" y="3">
+				<path name="vet_clinics"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="20" name="service" fq-name="vet_clinics.service" order="19" color-bg="219,229,241" font="Segoe UI:9:0" x="7" y="205">
+				<path name="vet_clinics"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="21" name="treatment" fq-name="vet_clinics.treatment" order="20" color-bg="219,229,241" font="Segoe UI:9:0" x="459" y="300">
+				<path name="vet_clinics"/>
+				<path name="railway"/>
+			</entity>
+			<entity id="22" name="veterinarian" fq-name="vet_clinics.veterinarian" order="21" color-bg="219,229,241" font="Segoe UI:9:0" x="455" y="18">
+				<path name="vet_clinics"/>
+				<path name="railway"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="pets_genus_id_e5609be6_fk_animal_genus_id" fq-name="pets.pets.pets_genus_id_e5609be6_fk_animal_genus_id" type="fk" pk-ref="1" fk-ref="2"/>
+		<relation name="species_category_id_9e438f9c_fk_animal_genus_id" fq-name="pets.species.species_category_id_9e438f9c_fk_animal_genus_id" type="fk" pk-ref="1" fk-ref="3"/>
+		<relation name="users_pets_pet_id_91a38304_fk_pets_id" fq-name="pets.users_pets.users_pets_pet_id_91a38304_fk_pets_id" type="fk" pk-ref="2" fk-ref="4"/>
+		<relation name="certificate_pet_id_d34668ba_fk_pets_id" fq-name="pets_documents.certificate.certificate_pet_id_d34668ba_fk_pets_id" type="fk" pk-ref="2" fk-ref="5"/>
+		<relation name="medical_card_pet_id_b209d347_fk_pets_id" fq-name="pets_documents.medical_card.medical_card_pet_id_b209d347_fk_pets_id" type="fk" pk-ref="2" fk-ref="6"/>
+		<relation name="passport_pet_id_f889bf5a_fk_pets_id" fq-name="pets_documents.passport.passport_pet_id_f889bf5a_fk_pets_id" type="fk" pk-ref="2" fk-ref="7"/>
+		<relation name="appointment_pet_id_9424e4e8_fk_pets_id" fq-name="vet_clinics.appointment.appointment_pet_id_9424e4e8_fk_pets_id" type="fk" pk-ref="2" fk-ref="18"/>
+		<relation name="treatment_pet_id_b6441325_fk_pets_id" fq-name="vet_clinics.treatment.treatment_pet_id_b6441325_fk_pets_id" type="fk" pk-ref="2" fk-ref="21"/>
+		<relation name="pets_species_id_bb09b483_fk_species_id" fq-name="pets.pets.pets_species_id_bb09b483_fk_species_id" type="fk" pk-ref="3" fk-ref="2"/>
+		<relation name="medical_card_certificate_id_c8d551c4_fk_certificate_id" fq-name="pets_documents.medical_card.medical_card_certificate_id_c8d551c4_fk_certificate_id" type="fk" pk-ref="5" fk-ref="6"/>
+		<relation name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" fq-name="public.auth_group_permissions.auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" type="fk" pk-ref="8" fk-ref="9"/>
+		<relation name="user_groups_group_id_b76f8aba_fk_auth_group_id" fq-name="users.user_groups.user_groups_group_id_b76f8aba_fk_auth_group_id" type="fk" pk-ref="8" fk-ref="16"/>
+		<relation name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" fq-name="public.auth_group_permissions.auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" type="fk" pk-ref="10" fk-ref="9"/>
+		<relation name="user_user_permission_permission_id_9deb68a3_fk_auth_perm" fq-name="users.user_user_permissions.user_user_permission_permission_id_9deb68a3_fk_auth_perm" type="fk" pk-ref="10" fk-ref="17"/>
+		<relation name="auth_permission_content_type_id_2f476e4b_fk_django_co" fq-name="public.auth_permission.auth_permission_content_type_id_2f476e4b_fk_django_co" type="fk" pk-ref="12" fk-ref="10"/>
+		<relation name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" fq-name="public.django_admin_log.django_admin_log_content_type_id_c4bce8eb_fk_django_co" type="fk" pk-ref="12" fk-ref="11"/>
+		<relation name="users_pets_user_id_0de00278_fk_user_id" fq-name="pets.users_pets.users_pets_user_id_0de00278_fk_user_id" type="fk" pk-ref="15" fk-ref="4"/>
+		<relation name="django_admin_log_user_id_c564eba6_fk_user_id" fq-name="public.django_admin_log.django_admin_log_user_id_c564eba6_fk_user_id" type="fk" pk-ref="15" fk-ref="11"/>
+		<relation name="user_groups_user_id_abaea130_fk_user_id" fq-name="users.user_groups.user_groups_user_id_abaea130_fk_user_id" type="fk" pk-ref="15" fk-ref="16"/>
+		<relation name="user_user_permissions_user_id_ed4a47ea_fk_user_id" fq-name="users.user_user_permissions.user_user_permissions_user_id_ed4a47ea_fk_user_id" type="fk" pk-ref="15" fk-ref="17"/>
+		<relation name="appointment_user_id_e98b8296_fk_user_id" fq-name="vet_clinics.appointment.appointment_user_id_e98b8296_fk_user_id" type="fk" pk-ref="15" fk-ref="18"/>
+		<relation name="veterinarian_user_id_2e400942_fk_user_id" fq-name="vet_clinics.veterinarian.veterinarian_user_id_2e400942_fk_user_id" type="fk" pk-ref="15" fk-ref="22"/>
+		<relation name="treatment_appointment_id_2831803c_fk_appointment_id" fq-name="vet_clinics.treatment.treatment_appointment_id_2831803c_fk_appointment_id" type="fk" pk-ref="18" fk-ref="21"/>
+		<relation name="appointment_clinic_id_4a7f7b5d_fk_clinic_id" fq-name="vet_clinics.appointment.appointment_clinic_id_4a7f7b5d_fk_clinic_id" type="fk" pk-ref="19" fk-ref="18"/>
+		<relation name="service_clinic_id_70512f2b_fk_clinic_id" fq-name="vet_clinics.service.service_clinic_id_70512f2b_fk_clinic_id" type="fk" pk-ref="19" fk-ref="20"/>
+		<relation name="veterinarian_clinic_id_ab544044_fk_clinic_id" fq-name="vet_clinics.veterinarian.veterinarian_clinic_id_ab544044_fk_clinic_id" type="fk" pk-ref="19" fk-ref="22"/>
+		<relation name="appointment_service_id_fc48fb0c_fk_service_id" fq-name="vet_clinics.appointment.appointment_service_id_fc48fb0c_fk_service_id" type="fk" pk-ref="20" fk-ref="18"/>
+		<relation name="appointment_veterinarian_id_e516ae3a_fk_veterinarian_id" fq-name="vet_clinics.appointment.appointment_veterinarian_id_e516ae3a_fk_veterinarian_id" type="fk" pk-ref="22" fk-ref="18"/>
+		<relation name="treatment_veterinarian_id_3ebf894b_fk_veterinarian_id" fq-name="vet_clinics.treatment.treatment_veterinarian_id_3ebf894b_fk_veterinarian_id" type="fk" pk-ref="22" fk-ref="21"/>
+	</relations>
+</diagram>

@@ -9,15 +9,40 @@ from pets.serializers import PetSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """Стандартный ViewSet для управления пользователями (CRUD)."""
+    """ViewSet для управления пользователями (CRUD).
+
+    Доступные действия:
+    - GET /users/ - список всех пользователей (только для админов)
+    - GET /users/{id}/ - получение данных пользователя
+    - PUT/PATCH /users/{id}/ - обновление данных пользователя (только владелец или админ)
+    - DELETE /users/{id}/ - удаление пользователя (только админ)
+    """
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = [IsAuthenticated]  # доступ только авторизованным
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        if self.action == "list" and not self.request.user.is_staff:
+            # Обычные пользователи не могут просматривать список всех пользователей
+            return queryset.filter(id=self.request.user.id)
+        return queryset
+
+    def get_permissions(self):
+        if self.action in ["update", "partial_update", "destroy"]:
+            # Проверяем, что пользователь обновляет свой профиль или является админом
+            return [IsAuthenticated()]
+        return super().get_permissions()
+
+    def perform_update(self, serializer):
+        if self.request.user.id != serializer.instance.id and not self.request.user.is_staff:
+            raise PermissionError("Вы можете редактировать только свой профиль")
+        serializer.save()
 
 
 class RegisterView(generics.CreateAPIView):
-    """Эндпоинт регистрации. При успешной регистрации возвращает JWT-токены."""
+    """Эндпоинт регистрации. При успешной регистрации возвращает access и refresh токены."""
 
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
@@ -39,7 +64,7 @@ class RegisterView(generics.CreateAPIView):
 
 
 class LoginView(generics.GenericAPIView):
-    """Эндпоинт логина. При успешной валидации возвращает access и refresh."""
+    """Эндпоинт логина. При успешной валидации возвращает access и refresh токены."""
 
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]

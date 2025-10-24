@@ -14,7 +14,6 @@ class VetClinicsViewSet(viewsets.ModelViewSet):
     serializer_class = ClinicSerializer
 
 
-# Временно добавьте этот код для отладки
 class VeterinarianList(generics.ListAPIView):
     serializer_class = VeterinarianSerializer
 
