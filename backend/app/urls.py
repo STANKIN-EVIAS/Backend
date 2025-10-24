@@ -6,10 +6,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 # Swagger/OpenAPI документация
 schema_view = get_schema_view(
@@ -30,8 +31,9 @@ api_v1_patterns = [
         "auth/",
         include(
             [
+                path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
                 path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-                path("", include("users.urls")),  # login, register, profile
+                path("", include("authentication.urls")),  # login, register
             ]
         ),
     ),
@@ -39,15 +41,17 @@ api_v1_patterns = [
     path("pets/", include("pets.urls")),
     path("clinics/", include("vet_clinics.urls")),
 ]
-
 urlpatterns = [
     # Административная панель
     path("admin/", admin.site.urls),
     # API v1
     path("", include(api_v1_patterns)),
-    # API документация
-    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
-    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    # Схема OpenAPI (JSON)
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    # Swagger UI (c JWT кнопкой)
+    path("swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    # ReDoc (альтернативный интерфейс)
+    path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]
 
 # Настройка раздачи медиа-файлов в режиме разработки
