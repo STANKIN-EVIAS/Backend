@@ -32,17 +32,17 @@ class SpeciesSerializer(serializers.ModelSerializer):
     Поля:
     - id: уникальный идентификатор
     - name: название породы
-    - category: ID рода животных (AnimalGenus)
+    - genus: ID рода животных (AnimalGenus)
     - genus_name: название рода животных (только для чтения)
     """
 
     genus_name = serializers.CharField(
-        source="category.name", read_only=True, help_text="Название рода животных, к которому относится порода"
+        source="genus.name", read_only=True, help_text="Название рода животных, к которому относится порода"
     )
 
     class Meta:
         model = Species
-        fields = ["id", "name", "category", "genus_name"]
+        fields = ["id", "name", "genus", "genus_name"]
 
 
 class PetSerializer(serializers.ModelSerializer):

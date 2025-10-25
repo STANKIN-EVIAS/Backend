@@ -40,7 +40,7 @@ class Species(models.Model):
         verbose_name = "Порода"
         verbose_name_plural = "Породы"
 
-    category = models.ForeignKey(
+    genus = models.ForeignKey(
         AnimalGenus, on_delete=models.CASCADE, verbose_name="Род животных", help_text="К какому роду относится порода"
     )
     name = models.CharField(max_length=100, verbose_name="Название породы", help_text="Название породы животного")
