@@ -28,7 +28,7 @@ export default function Header() {
         </div>
       </a>
       {/* Нижняя навигация */}
-      <nav className="bg-white shadow-[0px_6px_4px_rgba(0,0,0,0.59)]">
+      <nav className="bg-white shadow-xl] ">
         <div className="container mx-auto flex justify-center gap-8 h-16 items-center px-6">
           <NavItem text="Услуги" />
           <NavItem text="Контакты" />
