@@ -1,0 +1,17 @@
+venv
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+build
+dist
+.git
+.pytest_cache
+logs
+media
+node_modules
+env
+.env
+Dockerfile
+docker-compose.yml
