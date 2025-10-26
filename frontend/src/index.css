@@ -11,3 +11,1370 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Стили для HomePage компонентов */
+.homepage-container {
+  min-height: 100vh;
+  padding: 3.75rem 0;
+}
+
+.homepage-inner {
+  margin: 0 auto;
+  padding: 0 5rem;
+  max-width: 90rem;
+}
+
+/* Блоки с текстом и фото */
+.content-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  background: white;
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .content-block {
+    flex-direction: row;
+  }
+}
+
+.content-text {
+  flex: 1;
+}
+
+.content-text p {
+  font-size: 1.25rem;
+  color: #374151;
+  line-height: 1.75;
+  text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.photo-circle {
+  flex-shrink: 0;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Блок с картой */
+.map-section {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-top: 5rem;
+}
+
+.map-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.map-container {
+  border-radius: 0.75rem;
+  height: 24rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.map-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Кнопки с картой */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.button-with-arrow {
+  flex: 1;
+  position: relative;
+  padding: 2.75rem 2.5rem;
+  border-radius: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: all 0.3s;
+  background: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+  min-height: 100px;
+}
+
+.button-with-arrow:hover {
+  color: #3b82f6;
+}
+
+.arrow-circle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+}
+
+.buttons-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.promotions-section {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.promotions-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #374151;
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+}
+
+/* Карточка консультации */
+.consultation-card {
+  background: rgba(80, 196, 59, 0.91);
+  position: relative;
+  border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 310px;
+  min-width: 450px;
+  overflow: hidden;
+}
+
+.consultation-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  height: 105px;
+  justify-content: center;
+  line-height: 0;
+  left: 27px;
+  font-style: normal;
+  font-size: 24px;
+  color: white;
+  top: 75.5px;
+  letter-spacing: -0.12px;
+  transform: translateY(-50%);
+  width: 283px;
+  overflow: hidden;
+}
+
+.consultation-title p {
+  line-height: 1.45;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.consultation-image {
+  position: absolute;
+  aspect-ratio: 300/347;
+  bottom: -26px;
+  right: -6px;
+  top: 14px;
+}
+
+.consultation-image img {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.consultation-description {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  height: 39px;
+  justify-content: center;
+  line-height: 0;
+  left: 27px;
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+  top: 168.5px;
+  letter-spacing: -0.06px;
+  transform: translateY(-50%);
+  width: 187px;
+  overflow: hidden;
+}
+
+.consultation-description p {
+  line-height: 1.45;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Дополнительные карточки */
+.additional-card {
+  position: relative;
+  border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 143px;
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.card-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 0;
+  left: 15px;
+  font-style: normal;
+  font-size: 14px;
+  color: white;
+  top: 20px;
+  letter-spacing: -0.07px;
+  width: 70%;
+  overflow: hidden;
+}
+
+.card-title p {
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-image {
+  position: absolute;
+  aspect-ratio: 1;
+  bottom: -20px;
+  right: -40px;
+  width: 170px;
+  opacity: 0.9;
+}
+
+.card-image img {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.detail-button {
+  position: absolute;
+  background: white;
+  bottom: 12px;
+  height: 28px;
+  left: 15px;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 90px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.detail-button:hover {
+  background: #f3f4f6;
+}
+
+.detail-button-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  justify-content: center;
+  line-height: 0;
+  left: 50%;
+  font-style: normal;
+  font-size: 11px;
+  color: black;
+  text-align: center;
+  top: 50%;
+  letter-spacing: -0.05px;
+  transform: translate(-50%, -50%);
+  width: 80px;
+}
+
+.detail-button-text p {
+  line-height: 1.4;
+}
+
+/* Контейнеры карточек */
+.cards-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.main-card-container {
+  width: 50%;
+}
+
+.small-cards-container {
+  width: 44%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+/* Утилитарные классы */
+.mt-negative-32 {
+  margin-top: -8rem;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Новые классы для адаптивности */
+.map-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.map-wrapper {
+  flex: 1;
+}
+
+.buttons-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.all-promotions-button {
+  background: white;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2); /* Тень сдвинута влево и вниз */
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 10px; /* Сдвиг влево через margin */
+  display: block;
+  transform: translateX(-10px); /* Сдвиг на 10px влево */
+}
+
+.all-promotions-button:hover {
+  transform: translateX(-10px) translateY(-2px); /* Сохраняем сдвиг влево и добавляем подъем */
+  box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.25); /* Тень тоже сдвигается влево */
+  background: white;
+}
+
+.all-promotions-button-container {
+  display: flex;
+  justify-content: flex-start; /* Выравнивание по левому краю */
+  margin-top: 15px;
+  width: 100%;
+  padding-left: 30px; /* Убираем левый отступ */
+}
+
+.charity-section {
+  margin-top: 3rem;
+   padding-left: 2rem; /* Добавьте отступ слева */
+  padding-right: 2rem; /* И справа для симметрии */
+}
+
+.charity-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.charity-card {
+  background: #60c94d;
+  overflow: hidden;
+  position: relative;
+  border-radius: 25px;
+  height: 330px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 0 1rem;
+}
+
+.charity-main-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  height: 85px;
+  justify-content: center;
+  line-height: 0;
+  right: 45px;
+  font-style: normal;
+  font-size: 24px;
+  color: white;
+  top: 66.5px;
+  letter-spacing: -0.72px;
+  transform: translateY(-50%);
+  width: 316px;
+  text-align: right;
+}
+
+.charity-main-title p {
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  
+}
+
+.charity-image {
+  position: absolute;
+  height: 436px;
+  left: -13px;
+  top: -74px;
+  width: 361px;
+}
+
+.charity-image img {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.charity-description {
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200; /* Extra Light (Ultra Light) */
+  line-height: 1.1;
+  font-style: normal;
+  right: 45px;
+  text-align: right;
+  color: white;
+  bottom: 191px;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  transform: translateY(100%);
+  width: 712px;
+}
+
+.charity-button {
+  position: absolute;
+  background: #3b84c4;
+  bottom: 24px;
+  height: 42px;
+  right: 45px;
+  overflow: hidden;
+  border-radius: 25px;
+  width: 233px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.charity-button:hover {
+  background: #2d6ba6;
+}
+
+.charity-button-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 0;
+  inset: 12px 22px;
+  font-style: normal;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+}
+
+.charity-button-text p {
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.registration-section {
+  margin-top: 3rem;
+  padding-left: 2rem; /* Добавьте отступ слева */
+  padding-right: 2rem; /* И справа для симметрии */
+}
+
+.registration-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.registration-card {
+  background: #3b84c4;
+  overflow: hidden;
+  position: relative;
+  border-radius: 25px;
+  height: 450px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.registration-main-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 0;
+  right: 66px;
+  font-style: normal;
+  font-size: 32px;
+  color: white;
+  text-align: right;
+  top: 83.5px;
+  letter-spacing: -0.96px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.registration-main-title p {
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.registration-subtitle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  justify-content: center;
+  line-height: 0;
+  left: 397px;
+  right: 66px;
+  font-style: normal;
+  font-size: 20px;
+  color: white;
+  text-align: right;
+  top: 151px;
+  letter-spacing: -0.6px;
+  transform: translateY(-50%);
+}
+
+.registration-subtitle p {
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.registration-input {
+  position: absolute;
+  background: white;
+  height: 49px;
+  left: 428px;
+  right: 66px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.registration-input.name {
+  top: 201px;
+}
+
+.registration-input.email {
+  top: 266px;
+}
+
+.registration-input-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  justify-content: center;
+  line-height: 0;
+  left: 18px;
+  font-style: normal;
+  font-size: 16px;
+  color: #515151;
+  top: 50%;
+  letter-spacing: -0.48px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.registration-input-text p {
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.registration-button {
+  position: absolute;
+  background: rgba(80, 196, 59, 0.91);
+  bottom: 30px;
+  height: 40px;
+  right: 66px;
+  overflow: hidden;
+  border-radius: 25px;
+  width: 219px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.registration-button:hover {
+  background: rgba(70, 180, 50, 0.91);
+}
+
+.registration-button-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 0;
+  inset: 11px 29px 11px 30px;
+  font-style: normal;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+}
+
+.registration-button-text p {
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.registration-checkbox {
+  position: absolute;
+  background: #d9d9d9;
+  bottom: 91px;
+  left: 760px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.registration-checkbox-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  justify-content: center;
+  line-height: 0;
+  left: 790px;
+  font-style: normal;
+  font-size: 16px;
+  color: black;
+  bottom: 100px;
+  letter-spacing: -0.48px;
+  transform: translateY(50%);
+  white-space: nowrap;
+}
+
+.registration-checkbox-label p {
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.registration-image {
+  position: absolute;
+  aspect-ratio: 848/1024;
+  bottom: -16px;
+  left: 8px;
+  top: 0;
+  width: auto;
+}
+
+.registration-image img {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Адаптация для больших экранов (1025px - 1440px) */
+@media (max-width: 1440px) {
+  .homepage-inner {
+    max-width: 80rem;
+    padding: 0 3rem;
+  }
+}
+
+/* Адаптация для ноутбуков (1024px и меньше) */
+@media (max-width: 1024px) {
+  .homepage-inner {
+    padding: 0 2rem;
+  }
+  
+  .content-block {
+    gap: 3rem;
+    padding: 2rem;
+  }
+  
+  .photo-circle {
+    width: 18rem;
+    height: 18rem;
+  }
+  
+  .content-text p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  /* Карточки с акциями - становятся вертикальными */
+  .cards-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .main-card-container,
+  .small-cards-container {
+    width: 100%;
+  }
+  
+  .consultation-card {
+    min-width: 100%;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  
+  .consultation-title {
+    width: 250px;
+    font-size: 22px;
+  }
+  
+  .consultation-description {
+    width: 160px;
+  }
+
+  .charity-card {
+    height: 450px;
+  }
+  
+  .charity-main-title {
+    font-size: 22px;
+    width: 280px;
+    right: 35px;
+  }
+  
+  .charity-description {
+    font-size: 18px;
+    width: 600px;
+    right: 35px;
+  }
+  
+  .charity-button {
+    right: 35px;
+    width: 220px;
+  }
+  .registration-card {
+    height: 380px;
+  }
+  
+  .registration-main-title {
+    font-size: 28px;
+    right: 50px;
+  }
+  
+  .registration-subtitle {
+    left: 350px;
+    right: 50px;
+    font-size: 18px;
+  }
+  
+  .registration-input {
+    left: 380px;
+    right: 50px;
+  }
+  
+  .registration-checkbox {
+    left: 500px;
+  }
+  
+  .registration-checkbox-label {
+    left: 530px;
+  }
+  
+  .registration-button {
+    right: 50px;
+  }
+}
+
+/* Адаптация для планшетов (768px - 1023px) */
+@media (max-width: 768px) {
+  .homepage-inner {
+    padding: 0 1.5rem;
+  }
+  
+  .content-block {
+    gap: 2rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mt-negative-32 {
+    margin-top: -4rem;
+  }
+  
+  .photo-circle {
+    width: 14rem;
+    height: 14rem;
+  }
+  
+  .content-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .map-section {
+    padding: 1.5rem;
+  }
+  
+  /* Контейнер карты и кнопок становится вертикальным */
+  .map-buttons-wrapper {
+    flex-direction: column;
+  }
+  
+  .buttons-wrapper {
+    order: 2;
+    margin-top: 2rem;
+  }
+  
+  .map-wrapper {
+    order: 1;
+  }
+  
+  /* Кнопки становятся вертикальными */
+  .buttons-row {
+    flex-direction: column;
+  }
+  
+  .button-with-arrow {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+    min-height: 80px;
+  }
+  
+  /* Карточки с акциями - сетка 1 колонка */
+  .small-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .additional-card {
+    min-width: 100%;
+    height: 120px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .consultation-card {
+    height: 250px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .consultation-title {
+    font-size: 18px;
+    width: 200px;
+    left: 20px;
+    top: 70px;
+  }
+  
+  .consultation-description {
+    left: 20px;
+    top: 150px;
+    width: 140px;
+    font-size: 11px;
+  }
+  
+  .card-title {
+    font-size: 13px;
+    left: 12px;
+    top: 18px;
+    width: 65%;
+  }
+  
+  .card-image {
+    width: 140px;
+    bottom: -15px;
+    right: -30px;
+  }
+
+  .promotions-title {
+    font-size: 1.875rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .promotions-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .all-promotions-button-container {
+    margin-top: 2rem;
+  }
+  
+  .charity-card {
+    height: 400px;
+  }
+  
+  .charity-main-title {
+    font-size: 20px;
+    width: 250px;
+    right: 25px;
+    top: 80px;
+  }
+  
+  .charity-description {
+    font-size: 16px;
+    width: 500px;
+    right: 25px;
+    bottom: 160px;
+  }
+  
+  .charity-image {
+    width: 300px;
+    height: 380px;
+    left: -10px;
+    top: -60px;
+  }
+  
+  .charity-button {
+    right: 25px;
+    width: 200px;
+    height: 38px;
+  }
+  
+  .charity-button-text {
+    font-size: 14px;
+  }
+
+  .registration-card {
+    height: 350px;
+  }
+  
+  .registration-main-title {
+    font-size: 24px;
+    right: 30px;
+    top: 70px;
+  }
+  
+  .registration-subtitle {
+    left: 250px;
+    right: 30px;
+    font-size: 16px;
+    top: 130px;
+  }
+  
+  .registration-input {
+    left: 280px;
+    right: 30px;
+    height: 42px;
+  }
+  
+  .registration-input.name {
+    top: 180px;
+  }
+  
+  .registration-input.email {
+    top: 235px;
+  }
+  
+  .registration-checkbox {
+    left: 350px;
+    bottom: 110px;
+  }
+  
+  .registration-checkbox-label {
+    left: 375px;
+    bottom: 120px;
+    font-size: 14px;
+  }
+  
+  .registration-button {
+    right: 30px;
+    bottom: 50px;
+    width: 200px;
+    height: 36px;
+  }
+  
+  .registration-button-text {
+    font-size: 14px;
+  }
+  
+  .registration-image {
+    width: 250px;
+  }
+ 
+}
+
+/* Адаптация для мобильных устройств (480px - 767px) */
+@media (max-width: 480px) {
+  .homepage-container {
+    padding: 1.5rem 0;
+  }
+  
+  .homepage-inner {
+    padding: 0 1rem;
+  }
+  
+  .content-block {
+    padding: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mt-negative-32 {
+    margin-top: -2rem;
+  }
+  
+  .photo-circle {
+    width: 12rem;
+    height: 12rem;
+  }
+  
+  .content-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .map-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .button-with-arrow {
+    padding: 1.2rem 0.8rem;
+    font-size: 0.9rem;
+    min-height: 70px;
+  }
+  
+  .map-container {
+    height: 20rem;
+  }
+  
+  .consultation-card {
+    height: 220px;
+    max-width: 350px;
+  }
+  
+  .consultation-title {
+    font-size: 16px;
+    width: 180px;
+    left: 15px;
+    top: 60px;
+  }
+  
+  .consultation-description {
+    left: 15px;
+    top: 130px;
+    width: 130px;
+    font-size: 10px;
+  }
+  
+  .card-title {
+    font-size: 12px;
+    left: 10px;
+    top: 15px;
+    width: 60%;
+  }
+  
+  .detail-button {
+    left: 10px;
+    bottom: 10px;
+    width: 75px;
+    height: 24px;
+  }
+  
+  .detail-button-text {
+    font-size: 10px;
+  }
+  
+  .card-image {
+    width: 120px;
+    bottom: -12px;
+    right: -25px;
+  }
+  .map-buttons-wrapper {
+    flex-direction: column;
+  }
+  
+  .buttons-wrapper {
+    order: 2;
+    margin-top: 2rem;
+  }
+  
+  .map-wrapper {
+    order: 1;
+  }
+
+  .promotions-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .promotions-section {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .all-promotions-button-container {
+    margin-top: 1.5rem;
+  }
+
+  .charity-card {
+    height: 350px;
+  }
+  
+  .charity-main-title {
+    font-size: 18px;
+    width: 200px;
+    right: 20px;
+    top: 70px;
+  }
+  
+  .charity-description {
+    font-size: 14px;
+    width: 250px;
+    right: 20px;
+    bottom: 140px;
+  }
+  
+  .charity-image {
+    width: 250px;
+    height: 320px;
+    left: -8px;
+    top: -50px;
+  }
+  
+  .charity-button {
+    right: 20px;
+    width: 180px;
+    height: 36px;
+    bottom: 20px;
+  }
+  
+  .charity-button-text {
+    font-size: 13px;
+  }
+  
+  .charity-title {
+    font-size: 1.75rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .registration-card {
+    height: 500px;
+  }
+  
+  .registration-main-title {
+    font-size: 20px;
+    right: 20px;
+    top: 60px;
+    text-align: center;
+    left: 20px;
+  }
+  
+  .registration-subtitle {
+    left: 20px;
+    right: 20px;
+    font-size: 14px;
+    top: 110px;
+    text-align: center;
+  }
+  
+  .registration-input {
+    left: 20px;
+    right: 20px;
+  }
+  
+  .registration-input.name {
+    top: 160px;
+  }
+  
+  .registration-input.email {
+    top: 220px;
+  }
+  
+  .registration-checkbox {
+    left: 20px;
+    bottom: 140px;
+  }
+  
+  .registration-checkbox-label {
+    left: 45px;
+    bottom: 150px;
+    font-size: 12px;
+    white-space: normal;
+    width: 200px;
+  }
+  
+  .registration-button {
+    right: 20px;
+    bottom: 80px;
+    width: 180px;
+  }
+  
+  .registration-image {
+    display: none;
+  }
+  
+  .registration-title {
+    font-size: 1.75rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+}
+
+/* Адаптация для очень маленьких экранов (до 360px) */
+@media (max-width: 360px) {
+  .homepage-inner {
+    padding: 0 0.5rem;
+  }
+  
+  .content-block {
+    padding: 0.8rem;
+  }
+  
+  .photo-circle {
+    width: 10rem;
+    height: 10rem;
+  }
+  
+  .content-text p {
+    font-size: 0.85rem;
+  }
+  
+  .consultation-card {
+    height: 200px;
+    max-width: 300px;
+  }
+  
+  .consultation-title {
+    font-size: 14px;
+    width: 150px;
+    left: 12px;
+    top: 50px;
+  }
+  
+  .consultation-description {
+    left: 12px;
+    top: 110px;
+    width: 120px;
+    font-size: 9px;
+  }
+  
+  .additional-card {
+    height: 110px;
+  }
+  
+  .card-title {
+    font-size: 11px;
+  }
+  
+  .button-with-arrow {
+    padding: 1rem 0.5rem;
+    font-size: 0.85rem;
+    min-height: 60px;
+  }
+  
+  .card-image {
+    width: 100px;
+    bottom: -10px;
+    right: -20px;
+  }
+}
+
+/* Медиа-запросы для новых классов */
+@media (max-width: 768px) {
+  .map-buttons-wrapper {
+    flex-direction: column;
+  }
+  
+  .buttons-wrapper {
+    order: 2;
+    margin-top: 2rem;
+  }
+  
+  .map-wrapper {
+    order: 1;
+  }
+}

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/UserProfilePage";
 import Header from "./components/Header";
+import Footer from "./components/Footer"; // Импортируйте ваш футтер
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/services/ServicesPage";
 import ContactsPage from "./pages/contacts/ContactsPage";
@@ -13,9 +14,9 @@ import './App.css';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         <Header />
-        <main className="pb-8">
+        <main className="flex-grow pb-8">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage />} />
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
           </Routes>
         </main>
+        <Footer /> 
       </div>
     </BrowserRouter>
   );
