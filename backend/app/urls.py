@@ -46,6 +46,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # API v1
     path("", include(api_v1_patterns)),
+    # Метрики Prometheus
+    path("", include("django_prometheus.urls")),
     # Схема OpenAPI (JSON)
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     # Swagger UI (c JWT кнопкой)
