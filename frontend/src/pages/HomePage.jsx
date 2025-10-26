@@ -1,6 +1,10 @@
 // src/pages/HomePage.jsx
 import React from 'react';
 import imgPhoto202510220002481 from "../assets/unnamed (5)-no-bg-preview (carve.photos).png";
+import imgKT from "../assets/unnamed.png";
+import imgSterilization from"../assets/unnamed (2)-no-bg-preview (carve.photos).png";
+import imgGrooming from "../assets/unnamed (3)-no-bg-preview (carve.photos).png";
+import imgFriend from "../assets/Gemini_Generated_Image_8vmpnz8vmpnz8vmp-no-bg-preview (carve.photos).png";
 
 // Компонент кнопки "Подробнее"
 function Frame39() {
@@ -16,7 +20,7 @@ function Frame39() {
 // Компонент карточки консультации
 function ConsultationCard() {
   return (
-    <div className="bg-[rgba(80,196,59,0.91)] overflow-clip relative rounded-[25px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[300px] min-w-[400px]">
+    <div className="bg-[rgba(80,196,59,0.91)] overflow-clip relative rounded-[25px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[300px] min-w-[450px]">
       <div className="absolute flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold h-[105px] justify-center leading-[0] left-[27px] not-italic text-[24px] text-white top-[75.5px] tracking-[-0.12px] translate-y-[-50%] w-[283px]">
         <p className="leading-[1.45]">{`Бесплатная первая онлайн консультация врача `}</p>
       </div>
@@ -35,6 +39,32 @@ function ConsultationCard() {
   );
 }
 
+function AdditionalCard({ title, color, image }) {
+  return (
+    <div className={`${color} overflow-clip relative rounded-[25px] h-[143px] min-w-[150px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]`}>
+      {/* Текст */}
+      <div className="absolute flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] left-[15px] not-italic text-[14px] text-white top-[20px] tracking-[-0.07px] w-[70%]">
+        <p className="leading-[1.4]">{title}</p>
+      </div>
+      
+      {/* Картинка */}
+      <div className="absolute aspect-square bottom-[-10px] right-[-10px] top-auto w-[80px] opacity-90">
+        <img 
+          alt={title} 
+          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full rounded-lg" 
+          src={image} 
+        />
+      </div>
+      
+      {/* Кнопка Подробнее - ИЗМЕНИТЕ ШИРИНУ ЗДЕСЬ */}
+      <button className="absolute bg-white bottom-[12px] h-[28px] left-[15px] overflow-clip rounded-[20px] w-[90px] cursor-pointer hover:bg-gray-100 transition duration-300">
+        <div className="absolute flex flex-col font-['Inter:Light',_sans-serif] font-light justify-center leading-[0] left-1/2 not-italic text-[11px] text-black text-center top-1/2 tracking-[-0.05px] translate-x-[-50%] translate-y-[-50%] w-[80px]">
+          <p className="leading-[1.4]">Подробнее</p>
+        </div>
+      </button>
+    </div>
+  );
+}
 
 // 🔧 Выносим компонент кнопки с кружком
 const ButtonWithArrow = ({ children }) => (
@@ -173,11 +203,35 @@ const HomePage = () => {
 
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex justify-center gap-8">
         <div className="w-1/2">
-            <ConsultationCard />
+          <ConsultationCard />
         </div>
+        <div className="w-2/5 grid grid-cols-2 gap-3">
+          <AdditionalCard 
+            title="Скидка 20% на КТ" 
+            color="bg-[rgba(59,132,196,0.82)]" 
+            image={imgKT}
+          />
+          <AdditionalCard 
+            title="Скидка на кастрацию и стерилизацию" 
+            color="bg-[rgba(196,59,159,0.82)]" 
+            image={imgSterilization}
+          />
+          <AdditionalCard 
+            title="Скидка 5% на груминг собак" 
+            color="bg-[rgba(196,144,59,0.82)]" 
+            image={imgGrooming}
+          />
+          <AdditionalCard 
+            title="Приведи друга и получи скидку" 
+            color="bg-[rgba(59,196,100,0.82)]" 
+            image={imgFriend}
+          />
+          </div>
         </div>
+
+
         
       </div>
     </div>
