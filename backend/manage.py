@@ -4,10 +4,35 @@ import logging
 import os
 import sys
 import time
-
+import psycopg2
+import subprocess
+import os
 from psycopg2 import OperationalError
 
+from app.settings.dev import DATABASES
+
 logger = logging.getLogger("evias")
+
+
+def wait_for_db():
+    db = DATABASES["default"]
+    i = 0
+    while i < 3:
+        try:
+            conn = psycopg2.connect(
+                dbname=db.get("NAME"),
+                user=db.get("USER"),
+                password=db.get("PASSWORD"),
+                host=db.get("HOST"),
+                port=db.get("PORT"),
+            )
+            conn.close()
+            print("База доступна, запускаем сервер...")
+            break
+        except psycopg2.OperationalError:
+            print("База недоступна, пробуем снова через 10 секунд...")
+            time.sleep(10)
+            i += 1
 
 
 def main():
@@ -19,27 +44,9 @@ def main():
     except ImportError as exc:
         raise ImportError("Couldn't import Django. Make sure it's installed and your venv is active.") from exc
 
-    logger.info("Starting EVIAS backend...")
     execute_from_command_line(sys.argv)
 
 
 if __name__ == "__main__":
-
-    max_retries = 5
-    delay = 10  # seconds, will exponential backoff up to 30s
-
-    for attempt in range(1, max_retries + 1):
-        try:
-            main()
-            break
-        except OperationalError as e:
-            logger.info(
-                f"Запуск backend задерживается, ожидание подключения к базе данных... (попытка {attempt}/{max_retries})"
-            )
-            if attempt == max_retries:
-                logger.error("Max retries reached, exiting.")
-                sys.exit(1)
-            time.sleep(delay)
-        except Exception as e:
-            logger.error(f"Unexpected error occurred: {e}")
-            sys.exit(1)
+    wait_for_db()
+    main()

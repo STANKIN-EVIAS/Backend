@@ -39,7 +39,7 @@ api_v1_patterns = [
     ),
     path("users/", include("users.urls")),
     path("pets/", include("pets.urls")),
-    path("clinics/", include("vet_clinics.urls")),
+    path("vet-clinics/", include("vet_clinics.urls")),
 ]
 urlpatterns = [
     # Административная панель

@@ -5,8 +5,13 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from pets.models import Pet
 from pets.serializers import PetSerializer
-from vet_clinics.models import Clinic, Veterinarian
-from vet_clinics.serializers import ClinicSerializer, VeterinarianSerializer
+from vet_clinics.models import Clinic, Service, Veterinarian
+from vet_clinics.serializers import ClinicSerializer, ServiceSerializer, VeterinarianSerializer
+
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
 
 class VetClinicsViewSet(viewsets.ModelViewSet):

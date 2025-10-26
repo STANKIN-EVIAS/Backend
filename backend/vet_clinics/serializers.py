@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Clinic, Pet
+from .models import Clinic, Pet, Service, Veterinarian
 
 
 class ClinicSerializer(serializers.ModelSerializer):
@@ -9,8 +9,10 @@ class ClinicSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "address", "phone_number", "email", "website", "description"]
 
 
-from rest_framework import serializers
-from .models import Veterinarian
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ["id", "clinic", "name", "description", "price", "duration_minutes"]
 
 
 class VeterinarianSerializer(serializers.ModelSerializer):
