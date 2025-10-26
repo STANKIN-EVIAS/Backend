@@ -9,9 +9,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем проект
 COPY . .
 
-# Прослушиваем порт, который проброшен в docker-compose (8080)
-EXPOSE 8080
+# Прослушиваем порт, который проброшен в docker-compose (8000)
+EXPOSE 8000
 
-# Для разработки запускаем встроенный сервер на 0.0.0.0:8080
-ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+# Для разработки запускаем встроенный сервер на 0.0.0.0:8000
+ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 

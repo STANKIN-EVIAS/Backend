@@ -1,7 +1,7 @@
 import { API_URL } from "./config";
 
 export async function login(email, password) {
-  const res = await fetch(API_URL + "/auth/login/", {
+  const res = await fetch(`${API_URL}/auth/login/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -16,7 +16,7 @@ export async function login(email, password) {
 
 export async function refreshToken() {
   const refresh = localStorage.getItem("refreshToken");
-  const res = await fetch(API_URL + "/auth/token/refresh/", {
+  const res = await fetch(`${API_URL}/auth/token/refresh/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh }),
@@ -37,7 +37,7 @@ export async function logout() {
   try {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      await fetch(API_URL + "/auth/logout/", {
+      await fetch(`${API_URL}/auth/logout/`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
