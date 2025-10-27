@@ -9,7 +9,9 @@ import ContactsPage from "./pages/contacts/ContactsPage";
 import ReviewsPage from "./pages/reviews/ReviewsPage";
 import ClinicsPage from "./pages/clinics/ClinicsPage";
 import SymptomsPage from "./pages/symptoms/SymptomsPage";
+import Logout from "./components/Logout";
 import './App.css';
+
 
 export default function App() {
   return (
@@ -26,6 +28,7 @@ export default function App() {
             <Route path="/clinics" element={<ClinicsPage />} />
             <Route path="/symptoms" element={<SymptomsPage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </main>
         <Footer /> 

@@ -32,7 +32,7 @@ export default function Header() {
         </div>
       </div>
       {/* Нижняя навигация */}
-      <nav className="bg-white shadow-xl] ">
+      <nav className="bg-white shadow-[0px_6px_4px_rgba(0,0,0,0.59)]">
         <div className="container mx-auto flex justify-center gap-8 h-16 items-center px-6">
           <NavItem text="Услуги" to="/services" />
           <NavItem text="Контакты" to="/contacts" />
@@ -86,15 +86,14 @@ function ProfileButton({ user }) {
         Личный кабинет
       </Link>
       {isAuth && (
-        <button
-          onClick={handleLogout}
+        <a href="logout"
           className="flex items-center gap-2 bg-red-500 text-white font-medium rounded-full h-12 px-4 hover:bg-red-600"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8z" clipRule="evenodd" />
           </svg>
           Выйти
-        </button>
+        </a>
       )}
     </div>
   );
