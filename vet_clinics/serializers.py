@@ -3,7 +3,6 @@ from .models import Clinic, Pet, Service, Veterinarian
 
 
 class ClinicSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Clinic
         fields = ["id", "name", "address", "phone_number", "email", "website", "description"]
@@ -12,7 +11,7 @@ class ClinicSerializer(serializers.ModelSerializer):
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
-        fields = ["id", "clinic", "name", "description", "price", "duration_minutes"]
+        fields = ["id", "name", "description", "price", "duration_minutes"]
 
 
 class VeterinarianSerializer(serializers.ModelSerializer):
