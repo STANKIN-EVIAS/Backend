@@ -1,14 +1,14 @@
 services:
   promtail:
     image: grafana/promtail:latest
-    container_name: promtail
+    container_name: EVIAS-promtail
     ports:
       - "9080:9080"
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./backend/docker/promtail/promtail-config.yaml:/etc/promtail/custom-config.yaml
-      - ./backend/logs:/var/log/django:ro
+      - ./docker/promtail/promtail-config.yaml:/etc/promtail/custom-config.yaml
+      - ./logs:/var/log/django:ro
       - /etc/localtime:/etc/localtime:ro
     command: -config.file=/etc/promtail/custom-config.yaml
     privileged: true
@@ -16,20 +16,20 @@ services:
 
   loki:
     image: grafana/loki:latest
-    container_name: loki
+    container_name: EVIAS-loki
     ports:
       - "3100:3100"
     volumes:
-      - ./backend/docker/loki/loki-config.yaml:/etc/loki/custom-config.yaml
+      - ./docker/loki/loki-config.yaml:/etc/loki/custom-config.yaml
     command: -config.file=/etc/loki/custom-config.yaml
     
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
+    container_name: EVIAS-prometheus
     ports:
       - "9090:9090"
     volumes:
-      - ./backend/docker/prometheus/prometheus.yml:/etc/prometheus/custom-prometheus.yml
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/custom-prometheus.yml
       - prometheusdata:/prometheus
       - /etc/localtime:/etc/localtime:ro
     command:
@@ -38,28 +38,28 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
+    container_name: EVIAS-grafana
     ports:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./backend/docker/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./docker/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - grafanadata:/var/lib/grafana
       - /etc/localtime:/etc/localtime:ro
 
   backend:
     build:
-      context: ./backend   # контекст — весь backend
-      dockerfile: docker/Dockerfile  # Dockerfile внутри backend/docker
-    container_name: backend
+      context: .   # контекст — весь Backend
+      dockerfile: docker/Dockerfile  # Dockerfile внутри Backend/docker
+    container_name: EVIAS-Backend
     ports:
       - "8000:8000"
     env_file:
-      - ./backend/.env
+      - .env
     volumes:
-      - ./backend/media:/app/media
+      - ./media:/app/media
       - /etc/localtime:/etc/localtime:ro
 
     logging:
@@ -68,11 +68,11 @@ services:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
   frontend:
+    container_name: EVIAS-Frontend
     build:
-      context: ./frontend
+      context: ../Frontend
       args:
         REACT_APP_BACKEND_API_URL: http://localhost:8000
-    container_name: frontend
     ports:
       - "3001:80"
     volumes:
