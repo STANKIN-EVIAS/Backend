@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 from users.storage import UserImageStorage
 
@@ -30,7 +30,9 @@ class User(AbstractUser):
         help_text="Необязательное поле. Может использоваться для отображения.",
     )
     email = models.EmailField(
-        unique=True, verbose_name="Email", help_text="Email пользователя. Используется для входа в систему."
+        unique=True,
+        verbose_name="Email",
+        help_text="Email пользователя. Используется для входа в систему.",
     )
     image = models.ImageField(
         upload_to=UserImageStorage.image_path,
@@ -49,7 +51,10 @@ class User(AbstractUser):
         help_text="Контактный номер телефона пользователя.",
     )
     role = models.CharField(
-        max_length=50, default="user", verbose_name="Роль", help_text="Роль пользователя в системе (user, vet, admin)."
+        max_length=50,
+        default="user",
+        verbose_name="Роль",
+        help_text="Роль пользователя в системе (user, vet, admin).",
     )
     pets = models.ManyToManyField(
         "pets.Pet",

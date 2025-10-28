@@ -1,9 +1,9 @@
-from rest_framework import viewsets
+from rest_framework import generics, status, viewsets
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from .models import User
 from .serializers import UserSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework import generics, status
-from rest_framework.response import Response
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -34,7 +34,10 @@ class UserViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def perform_update(self, serializer):
-        if self.request.user.id != serializer.instance.id and not self.request.user.is_staff:
+        if (
+            self.request.user.id != serializer.instance.id
+            and not self.request.user.is_staff
+        ):
             raise PermissionError("Вы можете редактировать только свой профиль")
         serializer.save()
 

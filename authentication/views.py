@@ -1,22 +1,21 @@
-from .serializers import RegisterSerializer, LoginSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import generics, status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from .serializers import LoginSerializer, RegistrationSerializer
 
 
-# Create your views here.
-class RegisterView(generics.CreateAPIView):
+class RegistrationView(generics.CreateAPIView):
     """Эндпоинт регистрации. При успешной регистрации возвращает access и refresh токены."""
 
-    serializer_class = RegisterSerializer
+    serializer_class = RegistrationSerializer
     permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-
-        from rest_framework_simplejwt.tokens import RefreshToken
 
         refresh = RefreshToken.for_user(user)
 
@@ -36,4 +35,5 @@ class LoginView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
