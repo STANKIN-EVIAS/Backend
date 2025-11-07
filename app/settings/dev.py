@@ -1,6 +1,6 @@
-from .base import *
-from .logging import LOGGING
-from .aws_storage import *
+from .base import *  # noqa: F403
+from .logging import LOGGING  # noqa: F401
+from .aws_storage import *  # noqa: F403
 import dj_database_url
 
 DEBUG = True

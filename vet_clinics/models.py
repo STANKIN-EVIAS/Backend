@@ -1,6 +1,11 @@
+import logging
+
 from django.db import models
+
 from pets.models import Pet
 from users.models import User
+
+logger = logging.getLogger("evias")
 
 
 # 🏥 КЛИНИКА
@@ -17,8 +22,9 @@ class Clinic(models.Model):
     email = models.EmailField(null=True, blank=True, verbose_name="Email")
     website = models.URLField(null=True, blank=True, verbose_name="Сайт")
     description = models.TextField(null=True, blank=True, verbose_name="Описание / информация о клинике")
+    latitude = models.FloatField(null=True, blank=True, verbose_name="Широта")
+    longitude = models.FloatField(null=True, blank=True, verbose_name="Долгота")
 
-    # Связь с услугами (многие-ко-многим)
     services = models.ManyToManyField(
         "Service",
         through="ClinicService",
@@ -89,9 +95,17 @@ class Veterinarian(models.Model):
         ordering = ["user__last_name"]
 
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="veterinarian_profile", verbose_name="Пользователь"
+        User,
+        on_delete=models.CASCADE,
+        related_name="veterinarian_profile",
+        verbose_name="Пользователь",
     )
-    clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE, related_name="veterinarians", verbose_name="Клиника")
+    clinic = models.ForeignKey(
+        Clinic,
+        on_delete=models.CASCADE,
+        related_name="veterinarians",
+        verbose_name="Клиника",
+    )
     specialization = models.CharField(max_length=255, verbose_name="Специализация")
     bio = models.TextField(null=True, blank=True, verbose_name="Биография / описание")
 
@@ -107,9 +121,24 @@ class Appointment(models.Model):
         verbose_name_plural = "Приёмы"
         ordering = ["-appointment_date"]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointments", verbose_name="Пользователь")
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="appointments", verbose_name="Питомец")
-    clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE, related_name="appointments", verbose_name="Клиника")
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="appointments",
+        verbose_name="Пользователь",
+    )
+    pet = models.ForeignKey(
+        Pet,
+        on_delete=models.CASCADE,
+        related_name="appointments",
+        verbose_name="Питомец",
+    )
+    clinic = models.ForeignKey(
+        Clinic,
+        on_delete=models.CASCADE,
+        related_name="appointments",
+        verbose_name="Клиника",
+    )
     veterinarian = models.ForeignKey(
         Veterinarian,
         on_delete=models.SET_NULL,
@@ -119,7 +148,12 @@ class Appointment(models.Model):
         verbose_name="Ветеринар",
     )
     service = models.ForeignKey(
-        Service, on_delete=models.SET_NULL, null=True, blank=True, related_name="appointments", verbose_name="Услуга"
+        Service,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="appointments",
+        verbose_name="Услуга",
     )
     appointment_date = models.DateTimeField(verbose_name="Дата и время приёма")
     notes = models.TextField(null=True, blank=True, verbose_name="Комментарий / примечание")

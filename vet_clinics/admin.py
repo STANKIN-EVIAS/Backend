@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Clinic, Veterinarian, Service, Appointment, ClinicService
+
+from .models import Appointment, Clinic, ClinicService, Service, Veterinarian
 
 
 # 🔗 Inline для связи Clinic ↔ Service
@@ -19,11 +20,6 @@ class ClinicAdmin(admin.ModelAdmin):
     search_fields = ("name", "address", "phone_number", "email")
     ordering = ("name",)
     inlines = [ClinicServiceInline]
-
-    fieldsets = (
-        ("Основная информация", {"fields": ("name", "address", "phone_number", "email", "website")}),
-        ("Описание", {"fields": ("description",)}),
-    )
 
 
 # 🩺 Ветеринар

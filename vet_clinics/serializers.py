@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from .models import Clinic, Pet, Service, Veterinarian
+
+from .models import Clinic, Service, Veterinarian
 
 
 class ClinicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clinic
-        fields = ["id", "name", "address", "phone_number", "email", "website", "description"]
+        fields = "__all__"
 
 
 class ServiceSerializer(serializers.ModelSerializer):

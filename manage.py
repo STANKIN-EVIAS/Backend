@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
 import logging
 import os
 import sys
 import time
+
 import psycopg2
-import subprocess
-import os
-from psycopg2 import OperationalError
 
 from app.settings.dev import DATABASES
 
@@ -42,7 +41,9 @@ def main():
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
-        raise ImportError("Couldn't import Django. Make sure it's installed and your venv is active.") from exc
+        raise ImportError(
+            "Couldn't import Django. Make sure it's installed and your venv is active."
+        ) from exc
 
     execute_from_command_line(sys.argv)
 
