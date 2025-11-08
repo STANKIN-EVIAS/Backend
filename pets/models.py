@@ -1,6 +1,7 @@
 from django.db import models
-from pets.storage import PetImageStorage
 from users.models import User
+
+from pets.storage import PetImageStorage
 
 
 class AnimalGenus(models.Model):

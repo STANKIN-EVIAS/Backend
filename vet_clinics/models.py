@@ -61,24 +61,12 @@ class ClinicService(models.Model):
         verbose_name_plural = "Услуги клиник"
         unique_together = ("clinic", "service")
 
-    clinic = models.ForeignKey(
-        Clinic,
-        on_delete=models.CASCADE,
-        related_name="clinic_services",
-        verbose_name="Клиника",
-    )
+    clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE, related_name="clinic_services", verbose_name="Клиника")
     service = models.ForeignKey(
-        Service,
-        on_delete=models.CASCADE,
-        related_name="clinic_services",
-        verbose_name="Услуга",
+        Service, on_delete=models.CASCADE, related_name="clinic_services", verbose_name="Услуга"
     )
     price_override = models.DecimalField(
-        max_digits=8,
-        decimal_places=0,
-        null=True,
-        blank=True,
-        verbose_name="Цена в этой клинике (если отличается)",
+        max_digits=8, decimal_places=0, null=True, blank=True, verbose_name="Цена в этой клинике (если отличается)"
     )
     available = models.BooleanField(default=True, verbose_name="Доступна")
 
@@ -121,24 +109,9 @@ class Appointment(models.Model):
         verbose_name_plural = "Приёмы"
         ordering = ["-appointment_date"]
 
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="appointments",
-        verbose_name="Пользователь",
-    )
-    pet = models.ForeignKey(
-        Pet,
-        on_delete=models.CASCADE,
-        related_name="appointments",
-        verbose_name="Питомец",
-    )
-    clinic = models.ForeignKey(
-        Clinic,
-        on_delete=models.CASCADE,
-        related_name="appointments",
-        verbose_name="Клиника",
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointments", verbose_name="Пользователь")
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="appointments", verbose_name="Питомец")
+    clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE, related_name="appointments", verbose_name="Клиника")
     veterinarian = models.ForeignKey(
         Veterinarian,
         on_delete=models.SET_NULL,
@@ -148,12 +121,7 @@ class Appointment(models.Model):
         verbose_name="Ветеринар",
     )
     service = models.ForeignKey(
-        Service,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="appointments",
-        verbose_name="Услуга",
+        Service, on_delete=models.SET_NULL, null=True, blank=True, related_name="appointments", verbose_name="Услуга"
     )
     appointment_date = models.DateTimeField(verbose_name="Дата и время приёма")
     notes = models.TextField(null=True, blank=True, verbose_name="Комментарий / примечание")

@@ -3,16 +3,18 @@ from rest_framework import serializers
 from .models import Clinic, Service, Veterinarian
 
 
-class ClinicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Clinic
-        fields = "__all__"
-
-
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = ["id", "name", "description", "price", "duration_minutes"]
+
+
+class ClinicSerializer(serializers.ModelSerializer):
+    services = ServiceSerializer(many=True)
+
+    class Meta:
+        model = Clinic
+        fields = "__all__"
 
 
 class VeterinarianSerializer(serializers.ModelSerializer):

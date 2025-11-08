@@ -1,8 +1,8 @@
+import os
 from datetime import timedelta
 from pathlib import Path
-import os
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
@@ -147,7 +147,7 @@ TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
-USE_TZ = False      
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
