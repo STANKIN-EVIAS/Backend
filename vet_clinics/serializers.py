@@ -26,5 +26,5 @@ class VeterinarianSerializer(serializers.ModelSerializer):
         model = Veterinarian
         fields = ["id", "full_name", "email", "specialization", "bio", "clinic_name"]
 
-    def get_full_name(self, obj):
+    def get_full_name(self, obj) -> str:
         return obj.user.get_full_name()

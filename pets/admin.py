@@ -1,9 +1,8 @@
 from django.contrib import admin
-from django.utils.html import format_html
 
 from pets_documents.admin import CertificateInline, MedicalCardInline, PassportInline
-from .models import AnimalGenus, Species, Pet, UserPet
-from users.models import User
+
+from .models import AnimalGenus, Pet, Species, UserPet
 
 
 # --- Категории животных ---

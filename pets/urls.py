@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import AnimalGenusViewSet, SpeciesViewSet, PetViewSet, UserPetsAPIView, UserPetsList
 
+
 router = DefaultRouter()
 router.register(r"genus", AnimalGenusViewSet, basename="genus")
 router.register(r"species", SpeciesViewSet, basename="species")

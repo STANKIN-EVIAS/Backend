@@ -1,9 +1,8 @@
-from typing import Any
 from rest_framework import serializers
 
 from pets.serializers import PetSerializer
+
 from .models import User
-from django.contrib.auth import authenticate
 
 
 class UserBriefSerializer(serializers.ModelSerializer):
@@ -43,8 +42,8 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["id", "role"]
 
-    def get_full_name(self, obj):
+    def get_full_name(self, obj) -> str:
         return f"{obj.first_name} {obj.last_name}".strip() or obj.email
 
-    def get_pets_count(self, obj):
+    def get_pets_count(self, obj) -> int:
         return obj.pets.count()
