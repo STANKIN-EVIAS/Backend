@@ -12,3 +12,4 @@ media/
 todo
 .env
 temp.sql
+.DS_Store
