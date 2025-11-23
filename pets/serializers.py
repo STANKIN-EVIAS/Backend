@@ -56,17 +56,13 @@ class PetSerializer(serializers.ModelSerializer):
     """
 
     # поля только для чтения (отображаются красиво)
-    genus_name = serializers.CharField(source="genus.name", read_only=True, help_text="Название рода животных")
-    species_name = serializers.CharField(source="species.name", read_only=True, help_text="Название породы животных")
-    gender_display = serializers.CharField(
-        source="get_gender_display", read_only=True, help_text="Отображаемое значение пола"
-    )
+    genus = serializers.CharField(source="genus.name", read_only=True, help_text="Название рода животных")
+    species = serializers.CharField(source="species.name", read_only=True, help_text="Название породы животных")
+    age = serializers.IntegerField(read_only=True, help_text="Возраст питомца в годах")
 
-    # поля для записи (создания)
     genus_id = serializers.PrimaryKeyRelatedField(
         queryset=AnimalGenus.objects.all(),
         source="genus",
-        write_only=True,
         required=False,
         allow_null=True,
         help_text="ID рода животного",
@@ -74,7 +70,6 @@ class PetSerializer(serializers.ModelSerializer):
     species_id = serializers.PrimaryKeyRelatedField(
         queryset=Species.objects.all(),
         source="species",
-        write_only=True,
         required=False,
         allow_null=True,
         help_text="ID породы животного",
@@ -82,23 +77,46 @@ class PetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pet
-        fields = [
-            "id",
-            "name",
-            "image",
-            "birth_date",
-            "gender",
-            "gender_display",
-            "genus_id",
-            "species_id",
-            "genus_name",
-            "species_name",
-        ]
+        fields = ["id", "name", "image", "birth_date", "age", "gender", "genus_id", "species_id", "genus", "species"]
         extra_kwargs = {
             "image": {"required": False, "allow_null": True},
             "birth_date": {"required": False, "allow_null": True},
             "gender": {"required": False, "allow_null": True},
         }
+
+    def get_age(self, obj):
+        """Рассчитывает возраст питомца в годах и месяцах."""
+        if not obj.birth_date:
+            return None
+
+        from datetime import date
+
+        today = date.today()
+        birth = obj.birth_date
+
+        # базовые расчёты
+        years = today.year - birth.year
+        months = today.month - birth.month
+
+        # если месяц еще не наступил — уменьшаем год и добавляем месяцев
+        if today.day < birth.day:
+            months -= 1
+
+        if months < 0:
+            years -= 1
+            months += 12
+
+        # формат ответа
+        return {"years": years, "months": months}
+
+    def to_representation(self, instance):
+        """
+        Переопределяем to_representation, чтобы добавить вычисляемое поле age.
+        """
+        data = super().to_representation(instance)
+        if self.get_age(instance):
+            data["age"] = self.get_age(instance)
+        return data
 
     def get_owners_count(self, obj):
         """Возвращает количество владельцев питомца."""
