@@ -2,15 +2,15 @@
 Маршрутизация проекта EVIAS.
 """
 
-from django.contrib import admin
-from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.contrib import admin
+from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from drf_yasg import openapi
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 # Swagger/OpenAPI документация
 schema_view = get_schema_view(
@@ -40,6 +40,7 @@ api_v1_patterns = [
     path("users/", include("users.urls")),
     path("pets/", include("pets.urls")),
     path("vet-clinics/", include("vet_clinics.urls")),
+    path("pets-documents/", include("pets_documents.urls")),
 ]
 urlpatterns = [
     # Административная панель
