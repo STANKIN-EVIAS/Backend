@@ -128,16 +128,23 @@ class MedicalCardViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["get"], url_path="pet/(?P<pet_id>\d+)")
     def get_by_pet(self, request, pet_id=None):
-        """Получить медицинские карты конкретного питомца"""
+        """Получить медицинскую карту конкретного питомца (одну)"""
         # Проверяем, что питомец принадлежит пользователю
         if not request.user.is_staff:
             pet = get_object_or_404(Pet, id=pet_id, owner=request.user)
         else:
             pet = get_object_or_404(Pet, id=pet_id)
 
-        medical_cards = MedicalCard.objects.filter(pet=pet)
-        serializer = self.get_serializer(medical_cards, many=True)
-        return Response(serializer.data)
+        # Используем first() чтобы получить одну запись или None
+        medical_card = MedicalCard.objects.filter(pet=pet).first()
+
+        if medical_card:
+            # Сериализуем одну запись (не many=True)
+            serializer = self.get_serializer(medical_card)
+            return Response(serializer.data)
+        else:
+            # Возвращаем 404, если медицинская карта не найдена
+            return Response({"detail": "Медицинская карта для этого питомца не найдена."}, status=404)
 
 
 # Дополнительные представления для удобства
