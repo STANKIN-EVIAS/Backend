@@ -27,7 +27,6 @@ class CertificateSerializer(serializers.ModelSerializer):
 
 
 class MedicalCardSerializer(serializers.ModelSerializer):
-    certificate_info = CertificateSerializer(source="certificate", read_only=True)
     pet_name = serializers.CharField(source="pet.name", read_only=True)
 
     class Meta:
@@ -44,8 +43,6 @@ class MedicalCardSerializer(serializers.ModelSerializer):
             "vaccinations",
             "last_checkup_date",
             "next_checkup_date",
-            "certificate",
-            "certificate_info",
         ]
         read_only_fields = ["id"]
 
